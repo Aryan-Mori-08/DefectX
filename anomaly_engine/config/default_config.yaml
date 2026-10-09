@@ -1,0 +1,67 @@
+# ==============================================================================
+# PatchCore Industrial Anomaly Detection Engine Configuration
+# ==============================================================================
+
+system:
+  device: "cuda"                     # "cuda" | "cpu" | "mps"
+  random_seed: 42
+  precision: "fp16"                  # "fp32" | "fp16"
+  num_workers: 4
+
+quality_gate:
+  enabled: true
+  min_laplacian_variance: 100.0      # Sharpness/blur cutoff (Laplacian var < 100 -> blurry)
+  min_mean_intensity: 25.0           # Underexposure threshold (0-255 scale)
+  max_mean_intensity: 235.0          # Overexposure / saturation threshold (0-255 scale)
+  min_contrast_rms: 20.0             # RMS contrast cutoff
+  max_overexposed_pixel_pct: 0.05    # Max fraction of blown out pixels (> 250)
+  max_underexposed_pixel_pct: 0.05   # Max fraction of dead black pixels (< 5)
+
+preprocessing:
+  target_size: [256, 256]            # [H, W] (e.g. [256, 256] or [384, 384])
+  apply_clahe: true
+  clahe_clip_limit: 2.0
+  clahe_grid_size: [8, 8]
+  apply_white_balance: true          # Gray-World color constancy
+  color_space: "RGB"
+  normalization:
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+model:
+  backbone_name: "wide_resnet50_2"   # "wide_resnet50_2" | "dinov2_vits14" | "dinov2_vitb14"
+  extracted_layers: ["layer2", "layer3"] # Multi-scale mid-level features
+  pooling_kernel_size: 3
+  pooling_stride: 1
+  pooling_padding: 1
+
+memory_bank:
+  coreset_sampling_ratio: 0.05       # 5% coreset ratio (reduces 20k patches -> 1024)
+  projection_dimension: 128          # Johnson-Lindenstrauss dimension for fast greedy selection
+  index_type: "flat"                 # "flat" (exact L2) or "hnsw"
+  hnsw_m: 32
+  hnsw_ef_construction: 128
+  hnsw_ef_search: 64
+  storage_format: "pt"               # "pt" (torch tensor) | "safetensors" | "npz"
+
+inference:
+  k_neighbors: 1                     # Nearest neighbor count
+  top_k_image_patches: 5             # Average top-k patch distances for image-level score
+  reweight_factor: 0.1               # Neighborhood score reweighting hyperparameter
+  image_threshold: 0.45              # Image-level PASS/REJECT decision boundary
+  pixel_threshold: 0.30              # Pixel-level heatmap anomaly cutoff
+  gaussian_sigma: 4.0                # Heatmap Gaussian smoothing kernel sigma
+  min_defect_area_px: 12             # Minimum connected component area to register defect
+  defect_severity_scaling: 1.0       # Weight for severity score calculation
+
+product_router:
+  enabled: true
+  min_confidence_threshold: 0.75     # Minimum cosine similarity for automated identification
+  min_margin_threshold: 0.10         # Margin between top-1 and top-2 candidate
+  unknown_product_label: "UNKNOWN_PRODUCT"
+
+feedback:
+  auto_update_active: false          # Require supervisor approval before activating new bank
+  staging_buffer_capacity: 50        # Number of samples staged before recommending review
+  max_feedback_patches_per_update: 250
+  similarity_safety_threshold: 0.98  # Prevent memorizing exact identical duplicate patches

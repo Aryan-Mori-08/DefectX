@@ -1,0 +1,6 @@
+{
+  "name": "Industrial Defect & Anomaly Detection Engine",
+  "description": "Product-agnostic unsupervised PatchCore anomaly detection engine for industrial visual quality inspection.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
