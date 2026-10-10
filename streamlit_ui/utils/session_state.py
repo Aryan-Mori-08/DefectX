@@ -25,7 +25,7 @@ def init_session_state() -> None:
         # Operator feedback logs
         "feedback_logs": [],
         # Selected profile
-        "selected_profile": "pcb_rev_b",
+        "selected_profile": None,  # No default profile
     }
 
     for key, value in defaults.items():

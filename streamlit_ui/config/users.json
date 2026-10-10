@@ -1,0 +1,20 @@
+{
+  "admin": {
+    "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+    "role": "admin",
+    "name": "System Administrator",
+    "email": "admin@defectx.com"
+  },
+  "operator1": {
+    "password": "ec6e1c25258002eb1c67d15c7f45da7945fa4c58778fd7d88faa5e53e3b4698d",
+    "role": "operator",
+    "name": "Quality Inspector",
+    "email": "operator@defectx.com"
+  },
+  "employee1": {
+    "password": "5b2f8e27e2e5b4081c03ce70b288c87bd1263140cbd1bd9ae078123509b7caff",
+    "role": "employee",
+    "name": "Production Employee",
+    "email": "employee@defectx.com"
+  }
+}

@@ -2,7 +2,7 @@
 """Calibrates optimal image and pixel decision thresholds on a validation set.
 
 Usage:
-    python scripts/calibrate_thresholds.py --product pcb_rev_b --val-dir data/validation/pcb_rev_b/ --method target_recall
+    python scripts/calibrate_thresholds.py --product my_product --val-dir data/validation/my_product/ --method target_recall
 """
 
 from __future__ import annotations

@@ -424,7 +424,7 @@ def main():
         onboard_c1, onboard_c2 = st.columns(2)
 
         with onboard_c1:
-            new_prod_id = st.text_input("Product Identifier", value="pcb_rev_b")
+            new_prod_id = st.text_input("Product Identifier", value="my_product_001")
             backbone_opt = st.selectbox("Feature Extractor Trunk", ["wide_resnet50_2", "dinov2_vits14", "dinov2_vitb14"])
             coreset_pct = st.slider("Coreset Subsampling Ratio", min_value=0.01, max_value=0.15, value=0.05, step=0.01)
 

@@ -2,7 +2,7 @@
 """Performs online PatchCore anomaly inspection on industrial images.
 
 Usage:
-    python scripts/run_inference.py --image path/to/sample.png --product pcb_rev_b --save-vis
+    python scripts/run_inference.py --image path/to/sample.png --product my_product --save-vis
 """
 
 from __future__ import annotations

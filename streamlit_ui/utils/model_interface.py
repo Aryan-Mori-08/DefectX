@@ -32,7 +32,7 @@ if ENGINE_ROOT.exists() and str(ENGINE_ROOT) not in sys.path:
     sys.path.insert(0, str(ENGINE_ROOT))
 
 REGISTRY_FILE = Path(__file__).resolve().parent.parent / "product_profiles.json"
-DEFAULT_PROFILES = ["pcb_rev_b", "metal_casting_part_a", "injection_mold_04"]
+DEFAULT_PROFILES = []  # No default profiles - user must onboard their own products
 
 
 # -----------------------------------------------------------------------------

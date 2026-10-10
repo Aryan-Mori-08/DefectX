@@ -2,7 +2,7 @@
 """Builds a calibrated Coreset Memory Bank from 10-30 defect-free reference images.
 
 Usage:
-    python scripts/build_memory_bank.py --product pcb_rev_b --ref-dir data/reference/pcb_rev_b/
+    python scripts/build_memory_bank.py --product my_product --ref-dir data/reference/my_product/
 """
 
 from __future__ import annotations

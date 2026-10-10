@@ -2,7 +2,7 @@
 """Evaluates PatchCore model on validation dataset with normal and defect splits.
 
 Usage:
-    python scripts/evaluate_model.py --product pcb_rev_b --val-dir data/validation/pcb_rev_b/
+    python scripts/evaluate_model.py --product my_product --val-dir data/validation/my_product/
 """
 
 from __future__ import annotations

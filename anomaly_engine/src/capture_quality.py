@@ -41,10 +41,10 @@ class CaptureQualityGate:
 
     def __init__(
         self,
-        min_laplacian_variance: float = 25.0,
-        min_mean_intensity: float = 25.0,
+        min_laplacian_variance: float = 50.0,
+        min_mean_intensity: float = 30.0,
         max_mean_intensity: float = 235.0,
-        min_contrast_rms: float = 20.0,
+        min_contrast_rms: float = 15.0,
         max_overexposed_pixel_pct: float = 0.05,
         max_underexposed_pixel_pct: float = 0.05,
     ) -> None:

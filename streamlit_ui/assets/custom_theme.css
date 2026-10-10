@@ -1,0 +1,479 @@
+/* DefectX Custom Streamlit Theme - Based on reference design */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy: #092b55;
+  --blue: #104a8a;
+  --orange: #ff791b;
+  --text: #183453;
+  --muted: #64748b;
+  --line: #e1e9f1;
+  --light: #f3f8fc;
+  --white: #ffffff;
+  --green: #12805c;
+  --red: #c83939;
+  --shadow: 0 12px 35px rgba(15, 44, 77, .07);
+}
+
+/* Global Styles */
+* {
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Hide Streamlit branding and menu */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Fix top-left glitch by hiding default header */
+[data-testid="stHeader"] {
+  display: none;
+}
+
+/* Main App Background */
+.stApp {
+  background: linear-gradient(120deg, #f6faff, #fff);
+}
+
+/* Sidebar Styling */
+section[data-testid="stSidebar"] {
+  background: var(--navy) !important;
+  background: linear-gradient(180deg, #092b55 0%, #0d3766 100%) !important;
+}
+
+section[data-testid="stSidebar"] > div {
+  background: transparent !important;
+}
+
+/* Sidebar Title */
+section[data-testid="stSidebar"] h1 {
+  color: white !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  letter-spacing: -1px;
+  padding: 20px 0 10px 0;
+}
+
+section[data-testid="stSidebar"] h1::before {
+  content: "◈ ";
+  color: var(--orange);
+  font-size: 28px;
+  margin-right: 8px;
+}
+
+/* Sidebar Labels and Text */
+section[data-testid="stSidebar"] label {
+  color: #e2eaf4 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+section[data-testid="stSidebar"] .stMarkdown {
+  color: #d6e3f1 !important;
+}
+
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+  color: white !important;
+  font-weight: 700 !important;
+}
+
+/* Sidebar Selectbox and Inputs */
+section[data-testid="stSidebar"] .stSelectbox > div > div,
+section[data-testid="stSidebar"] input {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border-radius: 8px;
+}
+
+/* Sidebar Slider */
+section[data-testid="stSidebar"] .stSlider > div > div > div {
+  background: var(--orange) !important;
+}
+
+/* Sidebar Divider */
+section[data-testid="stSidebar"] hr {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  margin: 20px 0;
+}
+
+/* Main Content Title */
+h1 {
+  color: var(--navy) !important;
+  font-size: 42px !important;
+  font-weight: 800 !important;
+  letter-spacing: -1.5px !important;
+  line-height: 1.2 !important;
+}
+
+/* Section Headers */
+h2 {
+  color: var(--navy) !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.8px !important;
+}
+
+h3 {
+  color: var(--text) !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+/* Tabs Styling */
+.stTabs [data-baseweb="tab-list"] {
+  gap: 8px;
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.stTabs [data-baseweb="tab"] {
+  height: 50px;
+  background: transparent;
+  border-radius: 8px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0 24px;
+  border: 1px solid transparent;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+  background: var(--light);
+  color: var(--blue);
+}
+
+.stTabs [aria-selected="true"] {
+  background: linear-gradient(135deg, var(--blue), var(--navy)) !important;
+  color: white !important;
+  border-color: var(--blue) !important;
+}
+
+/* Buttons */
+.stButton > button {
+  background: var(--orange) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 30px !important;
+  padding: 12px 24px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 7px 20px rgba(255, 121, 27, 0.17) !important;
+}
+
+.stButton > button:hover {
+  background: #ee6810 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 25px rgba(255, 121, 27, 0.25) !important;
+}
+
+/* Secondary Buttons */
+.stButton > button[kind="secondary"] {
+  background: #eaf2fb !important;
+  color: var(--navy) !important;
+  box-shadow: none !important;
+}
+
+/* Metric Cards */
+[data-testid="stMetric"] {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+[data-testid="stMetric"] label {
+  color: var(--muted) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+[data-testid="stMetric"] [data-testid="stMetricValue"] {
+  color: var(--navy) !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+}
+
+/* Info/Success/Warning/Error Boxes */
+.stAlert {
+  border-radius: 10px;
+  border: none;
+  padding: 16px 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Success Box */
+[data-baseweb="notification"][kind="success"],
+.stSuccess {
+  background: #e7f7f0 !important;
+  color: var(--green) !important;
+  border-left: 4px solid var(--green) !important;
+}
+
+/* Error Box */
+[data-baseweb="notification"][kind="error"],
+.stError {
+  background: #fff0ed !important;
+  color: var(--red) !important;
+  border-left: 4px solid var(--red) !important;
+}
+
+/* Warning Box */
+[data-baseweb="notification"][kind="warning"],
+.stWarning {
+  background: #fff9e6 !important;
+  color: #b8860b !important;
+  border-left: 4px solid #ffc107 !important;
+}
+
+/* Info Box */
+[data-baseweb="notification"][kind="info"],
+.stInfo {
+  background: #eaf3ff !important;
+  color: var(--blue) !important;
+  border-left: 4px solid var(--blue) !important;
+}
+
+/* File Uploader */
+[data-testid="stFileUploader"] {
+  background: #f7faff;
+  border: 1.5px dashed #a9c1db;
+  border-radius: 12px;
+  padding: 30px;
+  transition: all 0.2s ease;
+}
+
+[data-testid="stFileUploader"]:hover {
+  border-color: var(--blue);
+  background: #f0f6ff;
+}
+
+/* Camera Input */
+[data-testid="stCameraInput"] {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+/* Images */
+[data-testid="stImage"] {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* DataFrames / Tables */
+[data-testid="stDataFrame"],
+.stDataFrame {
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+[data-testid="stDataFrame"] table {
+  font-size: 12px !important;
+}
+
+[data-testid="stDataFrame"] thead {
+  background: #f4f7fb !important;
+  color: #61738a !important;
+  font-weight: 700 !important;
+}
+
+[data-testid="stDataFrame"] tbody tr {
+  border-bottom: 1px solid #edf1f6 !important;
+}
+
+/* Selectbox */
+.stSelectbox > div > div {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+/* Text Input */
+.stTextInput > div > div > input {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  padding: 12px;
+}
+
+/* Slider */
+.stSlider > div > div > div > div {
+  background: var(--orange) !important;
+}
+
+/* Expander */
+.streamlit-expanderHeader {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Columns */
+[data-testid="column"] {
+  padding: 10px;
+}
+
+/* Custom Status Badges */
+.status-badge-pass {
+  background: #e5f7ee;
+  color: var(--green);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+.status-badge-reject {
+  background: #ffedeb;
+  color: var(--red);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+/* Spinner */
+.stSpinner > div {
+  border-top-color: var(--orange) !important;
+}
+
+/* Caption Text */
+.stCaptionContainer {
+  color: var(--muted) !important;
+  font-size: 11px !important;
+}
+
+/* Code Blocks */
+code {
+  background: #f7faff !important;
+  color: var(--blue) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+}
+
+/* Links */
+a {
+  color: var(--blue) !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--orange) !important;
+  text-decoration: underline;
+}
+
+/* Divider */
+hr {
+  border-color: var(--line) !important;
+  margin: 30px 0 !important;
+}
+
+/* Progress Bar */
+.stProgress > div > div > div {
+  background: var(--orange) !important;
+}
+
+/* Radio Buttons */
+.stRadio > div {
+  gap: 12px;
+}
+
+.stRadio label {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: all 0.2s ease;
+}
+
+.stRadio label:hover {
+  border-color: var(--blue);
+  background: var(--light);
+}
+
+/* Checkbox */
+.stCheckbox {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Custom Panel Styling */
+.inspection-panel {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+/* Live Indicator */
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(49, 217, 161, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #12805c;
+}
+
+.live-indicator::before {
+  content: "●";
+  color: #31d9a1;
+  font-size: 14px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px !important;
+  }
+
+  h2 {
+    font-size: 24px !important;
+  }
+
+  [data-testid="stMetric"] {
+    padding: 16px;
+  }
+
+  [data-testid="stMetric"] [data-testid="stMetricValue"] {
+    font-size: 24px !important;
+  }
+}

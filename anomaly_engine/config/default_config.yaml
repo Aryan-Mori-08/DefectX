@@ -10,12 +10,12 @@ system:
 
 quality_gate:
   enabled: true
-  min_laplacian_variance: 100.0      # Sharpness/blur cutoff (Laplacian var < 100 -> blurry)
-  min_mean_intensity: 25.0           # Underexposure threshold (0-255 scale)
-  max_mean_intensity: 235.0          # Overexposure / saturation threshold (0-255 scale)
-  min_contrast_rms: 20.0             # RMS contrast cutoff
-  max_overexposed_pixel_pct: 0.05    # Max fraction of blown out pixels (> 250)
-  max_underexposed_pixel_pct: 0.05   # Max fraction of dead black pixels (< 5)
+  min_laplacian_variance: 50.0       # Sharpness/blur cutoff - stricter for higher quality
+  min_mean_intensity: 30.0           # Underexposure threshold (0-255 scale) - stricter
+  max_mean_intensity: 235.0          # Overexposure / saturation threshold (0-255 scale) - stricter
+  min_contrast_rms: 15.0             # RMS contrast cutoff - stricter for better contrast
+  max_overexposed_pixel_pct: 0.05    # Max fraction of blown out pixels (> 250) - reduced to 5%
+  max_underexposed_pixel_pct: 0.05   # Max fraction of dead black pixels (< 5) - reduced to 5%
 
 preprocessing:
   target_size: [256, 256]            # [H, W] (e.g. [256, 256] or [384, 384])
@@ -45,14 +45,14 @@ memory_bank:
   storage_format: "pt"               # "pt" (torch tensor) | "safetensors" | "npz"
 
 inference:
-  k_neighbors: 1                     # Nearest neighbor count
-  top_k_image_patches: 5             # Average top-k patch distances for image-level score
-  reweight_factor: 0.1               # Neighborhood score reweighting hyperparameter
-  image_threshold: 0.45              # Image-level PASS/REJECT decision boundary
-  pixel_threshold: 0.30              # Pixel-level heatmap anomaly cutoff
-  gaussian_sigma: 1.5                # Heatmap Gaussian smoothing kernel sigma (reduced for micro defects)
-  min_defect_area_px: 3              # Minimum connected component area to register defect (lowered for micro defects)
-  defect_severity_scaling: 1.0       # Weight for severity score calculation
+  k_neighbors: 3                     # Nearest neighbor count - increased for more robust scoring
+  top_k_image_patches: 9             # Average top-k patch distances for image-level score - increased sensitivity
+  reweight_factor: 0.15              # Neighborhood score reweighting hyperparameter - adjusted for better localization
+  image_threshold: 0.40              # Image-level PASS/REJECT decision boundary - more sensitive
+  pixel_threshold: 0.25              # Pixel-level heatmap anomaly cutoff - more sensitive for smaller defects
+  gaussian_sigma: 1.2                # Heatmap Gaussian smoothing kernel sigma - optimized for micro defects
+  min_defect_area_px: 2              # Minimum connected component area to register defect - even lower for tiny defects
+  defect_severity_scaling: 1.2       # Weight for severity score calculation - increased emphasis
 
 product_router:
   enabled: true
