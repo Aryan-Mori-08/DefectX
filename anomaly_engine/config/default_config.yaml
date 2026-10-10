@@ -31,9 +31,9 @@ preprocessing:
 model:
   backbone_name: "wide_resnet50_2"   # "wide_resnet50_2" | "dinov2_vits14" | "dinov2_vitb14"
   extracted_layers: ["layer2", "layer3"] # Multi-scale mid-level features
-  pooling_kernel_size: 3
+  pooling_kernel_size: 2             # Reduced from 3 to preserve fine-grained spatial details
   pooling_stride: 1
-  pooling_padding: 1
+  pooling_padding: 0                 # Reduced from 1 to avoid excessive smoothing
 
 memory_bank:
   coreset_sampling_ratio: 0.05       # 5% coreset ratio (reduces 20k patches -> 1024)
@@ -50,8 +50,8 @@ inference:
   reweight_factor: 0.1               # Neighborhood score reweighting hyperparameter
   image_threshold: 0.45              # Image-level PASS/REJECT decision boundary
   pixel_threshold: 0.30              # Pixel-level heatmap anomaly cutoff
-  gaussian_sigma: 4.0                # Heatmap Gaussian smoothing kernel sigma
-  min_defect_area_px: 12             # Minimum connected component area to register defect
+  gaussian_sigma: 1.5                # Heatmap Gaussian smoothing kernel sigma (reduced for micro defects)
+  min_defect_area_px: 3              # Minimum connected component area to register defect (lowered for micro defects)
   defect_severity_scaling: 1.0       # Weight for severity score calculation
 
 product_router:

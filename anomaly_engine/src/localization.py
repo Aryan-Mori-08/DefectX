@@ -177,10 +177,11 @@ class DefectLocalizer:
         binary_mask = (heatmap >= pixel_threshold).astype(np.uint8) * 255
 
         # 2. Morphological cleaning: Remove single-pixel noise, close tiny holes
+        # Use smaller kernel (2x2) to preserve micro defects
         if HAS_OPENCV:
-            kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
-            binary_mask = cv2.morphologyEx(binary_mask, cv2.MORPH_OPEN, kernel)
-            binary_mask = cv2.morphologyEx(binary_mask, cv2.MORPH_CLOSE, kernel)
+            kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2, 2))
+            # Only apply closing to fill small holes, skip opening to preserve micro defects
+            binary_mask = cv2.morphologyEx(binary_mask, cv2.MORPH_CLOSE, kernel, iterations=1)
 
         # 3. Connected-Component Analysis
         defect_regions: List[DefectRegion] = []
